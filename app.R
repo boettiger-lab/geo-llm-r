@@ -44,6 +44,10 @@ ui <- page_sidebar(
       col_widths = c(11, 1)),
       fill = FALSE
   ),
+
+  textOutput("agent"),
+
+
   layout_columns(
     card(maplibreOutput("map")),
     card(includeMarkdown("## Plot"),
@@ -162,7 +166,7 @@ server <- function(input, output, session) {
 
 
       y_axis <- colnames(df)[!colnames(df) %in% colnames(svi)]
-      chart2 <- df |> 
+      chart2 <- df |>
         rename(social_vulnerability = y_axis) |>
         ggplot(aes(social_vulnerability)) +
         geom_density(fill = "darkred")  +
@@ -173,6 +177,9 @@ server <- function(input, output, session) {
 
       # We need to somehow trigger this df to update the map.
       data$df <- df
+    } else {
+      output$agent <- renderText(response$agent)
+
     }
 
   })
