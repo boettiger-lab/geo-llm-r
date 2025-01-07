@@ -147,8 +147,8 @@ server <- function(input, output, session) {
   observeEvent(input$user_msg, {
     stream <- chat$chat(input$chat)
 
-    # optional, remember previous discussion
-    #chat_append("chat", stream)
+    # Note: ellmer will preserve full chat history automatically.
+    # Reset wiht chat$set_turns(NULL)
 
     # Parse response
     response <- jsonlite::fromJSON(stream)
