@@ -15,6 +15,18 @@ schema <- read_file("schema.yml")
 system_prompt <- glue::glue(readr::read_file("system-prompt.md"),
                             .open = "<", .close = ">")
 
+
+
+# Or optionally test with cirrus
+chat <- ellmer::chat_vllm(
+  base_url = "https://llm.cirrus.carlboettiger.info/v1/",
+  model = "kosbu/Llama-3.3-70B-Instruct-AWQ",
+  api_key = Sys.getenv("CIRRUS_LLM_KEY"),
+  system_prompt = system_prompt,
+  api_args = list(temperature = 0)
+)
+
+# or use the NRP model
 chat <- ellmer::chat_vllm(
   base_url = "https://llm.nrp-nautilus.io/",
   model = "llama3",
@@ -23,13 +35,6 @@ chat <- ellmer::chat_vllm(
   api_args = list(temperature = 0)
 )
 
-chat <- ellmer::chat_vllm(
-  base_url = "https://llm.cirrus.carlboettiger.info/v1/",
-  model = "kosbu/Llama-3.3-70B-Instruct-AWQ",
-  api_key = Sys.getenv("CIRRUS_LLM_KEY"),
-  system_prompt = system_prompt,
-  api_args = list(temperature = 0)
-)
 
 # Test a chat-based response
 chat$chat("Which columns describes racial components of social vulnerability?")
@@ -39,13 +44,6 @@ response <- jsonlite::fromJSON(stream)
 
 con <- duckdbfs::cached_connection()
 filtered_data <- DBI::dbGetQuery(con, response$query)
-full_data <- svi
-response_query <- "
-SELECT COUNTY, AVG(RPL_THEME1) as avg_soc_vuln FROM
-svi WHERE STATE = 'California' GROUP BY COUNTY ORDER BY
-avg_soc_vuln DESC LIMIT 10;
-"
-
 
 filter_column <- function(full_data, filtered_data, id_col) {
   if (nrow(filtered_data) < 1) return(NULL)
