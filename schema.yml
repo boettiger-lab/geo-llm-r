@@ -1,0 +1,26 @@
+- VARIABLE_NAME: ST
+  DESCRIPTION: State-level FIPS code (two-digit integer)
+- VARIABLE_NAME: STATE
+  DESCRIPTION: State name
+- VARIABLE_NAME: ST_ABBR
+  DESCRIPTION: State abbreviation
+- VARIABLE_NAME: STCNTY
+  DESCRIPTION: County-level FIPS code (5 digit integer)
+- VARIABLE_NAME: COUNTY
+  DESCRIPTION: County name
+- VARIABLE_NAME: FIPS
+  DESCRIPTION: Tract-level geographic identification (full Census Bureau FIPS code)
+- VARIABLE_NAME: LOCATION
+  DESCRIPTION: Text description of tract county state
+- VARIABLE_NAME: AREA_SQMI
+  DESCRIPTION: Tract area in square miles
+- VARIABLE_NAME: RPL_THEMES
+  DESCRIPTION: Overall social vulnerability. Should always be used unless explicit sub-theme is called for.
+- VARIABLE_NAME: RPL_THEME1
+  DESCRIPTION: Subtheme for socio-economic status social vulnerability score
+- VARIABLE_NAME: RPL_THEME2
+  DESCRIPTION: Subtheme for Household characteristics vulnerability score
+- VARIABLE_NAME: RPL_THEME3
+  DESCRIPTION: Subtheme for Racial and Ethnic Minority status based vulnerability score
+- VARIABLE_NAME: RPL_THEME4
+  DESCRIPTION: Subtheme for Housing and transportation-based vulnerability score
