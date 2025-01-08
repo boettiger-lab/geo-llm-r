@@ -147,8 +147,7 @@ server <- function(input, output, session) {
   observeEvent(input$user_msg, {
     stream <- chat$chat(input$chat)
 
-    # Note: ellmer will preserve full chat history automatically.
-    # Reset wiht chat$set_turns(NULL)
+
 
     # Parse response
     response <- jsonlite::fromJSON(stream)
@@ -177,6 +176,11 @@ server <- function(input, output, session) {
 
       # We need to somehow trigger this df to update the map.
       data$df <- df
+
+    # Note: ellmer will preserve full chat history automatically.
+    # this can confuse the agent and mess up behavior, so we reset:
+    chat$set_turns(NULL)
+
     } else {
       output$agent <- renderText(response$agent)
 

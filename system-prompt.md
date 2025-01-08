@@ -28,7 +28,6 @@ in that county or state.
 Refer to this descriptions of each of the columns (VARIABLE_NAME) from the metadata table:
 <schema>
 
-Note that the column called "RPL_THEMES" corresponds to the overall "Social vulnerability index" number. Whenenver you SELECT the COUNTY, you must include the STCNTY
-column as well because county names are not unique across states!
+Whenenver you SELECT the COUNTY, you must include the STCNTY column as well because county names are not unique across states!
 
 
