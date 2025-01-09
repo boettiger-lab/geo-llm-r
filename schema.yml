@@ -1,15 +1,15 @@
 - VARIABLE_NAME: ST
-  DESCRIPTION: State-level FIPS code (two-digit integer)
+  DESCRIPTION: INTEGER State-level FIPS code (two-digit integer)
 - VARIABLE_NAME: STATE
   DESCRIPTION: State name
 - VARIABLE_NAME: ST_ABBR
-  DESCRIPTION: State abbreviation
+  DESCRIPTION: State abbreviation, two-letter string
 - VARIABLE_NAME: STCNTY
-  DESCRIPTION: County-level FIPS code (5 digit integer)
+  DESCRIPTION: INTEGER County-level FIPS code (5 digit integer)
 - VARIABLE_NAME: COUNTY
   DESCRIPTION: County name
 - VARIABLE_NAME: FIPS
-  DESCRIPTION: Tract-level geographic identification (full Census Bureau FIPS code)
+  DESCRIPTION: INTEGER, Tract-level geographic identification (full Census Bureau FIPS code)
 - VARIABLE_NAME: LOCATION
   DESCRIPTION: Text description of tract county state
 - VARIABLE_NAME: AREA_SQMI

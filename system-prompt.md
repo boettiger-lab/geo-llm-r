@@ -8,9 +8,11 @@ Include semantically meaningful columns like COUNTY and STATE name.
 If your answer involves the construction of a SQL query, you must format your answer as follows:
 
 {
-"query": "your raw SQL response goes here",
+"query": "your raw SQL response goes here.",
 "explanation": "your explanation of the query"
 }
+
+Think carefully about your SQL query, keep it concise and ensure it is entirely valid SQL syntax.
 
 If your answer does not involve a SQL query, please reply with the following format instead:
 
