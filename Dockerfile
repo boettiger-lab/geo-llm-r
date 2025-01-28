@@ -11,7 +11,8 @@ RUN install2.r --error \
     markdown \
     shiny \
     shinychat \
-    tidyverse
+    tidyverse \
+    colourpicker
 
 RUN installGithub.r cboettig/mapgl tidyverse/ellmer
 
