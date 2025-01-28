@@ -1,11 +1,12 @@
 library(shiny)
 library(bslib)
 library(htmltools)
-#library(markdown)
 library(fontawesome)
 library(bsicons)
 library(gt)
+library(colourpicker)
 library(glue)
+
 library(ggplot2)
 library(readr)
 library(dplyr)
@@ -82,19 +83,20 @@ ui <- page_sidebar(
       shiny::markdown(readr::read_file("footer.md")),
   ),
   sidebar = sidebar(
-    selectInput( 
-    "select", 
+    selectInput(
+    "select",
     "Select an LLM:", 
     list("LLama3" = "llama3",
          #"OLMO2 (AllenAI)" = "olmo",
-         "Gorilla (UC Berkeley)" = "gorilla"
-        ) 
+         "Gorilla (UC Berkeley)" = "gorilla" 
+        )
   ),
 
     input_switch("redlines", "Redlined Areas", value = FALSE),
     input_switch("svi", "Social Vulnerability", value = TRUE),
     input_switch("richness", "Biodiversity Richness", value = FALSE),
     input_switch("rsr", "Biodiversity Range Size Rarity", value = FALSE),
+
 
     card(
       card_header(bs_icon("github"), "Source code:"),
@@ -246,6 +248,7 @@ server <- function(input, output, session) {
           source = list(type = "vector",
                         url = paste0("pmtiles://", pmtiles)),
           source_layer = "svi",
+          tooltip = "RPL_THEMES",
           filter = filter_column(svi, data$df, "FIPS"),
           fill_opacity = 0.5,
           fill_color = interpolate(column = "RPL_THEMES",
@@ -254,8 +257,14 @@ server <- function(input, output, session) {
                                   na_color = "lightgrey")
         )
     }
-  m
+  m |>
+    add_draw_control() |>
+    add_geocoder_control()
+
   })
+
+
+
 
 }
 
